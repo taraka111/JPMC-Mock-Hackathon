@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import "../styles/login.css"; // Adjust the path if needed
+
 
 function Login() {
   const { role } = useParams();
@@ -36,43 +38,35 @@ function Login() {
   };
 
   return (
-    <div style={{ maxWidth: "300px", margin: "40px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
-      <h2>{role?.toUpperCase() || "USER"} Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ width: "100%", padding: 8, margin: "8px 0" }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: "100%", padding: 8, margin: "8px 0" }}
-        />
-        <div style={{ textAlign: "right", marginBottom: 12 }}>
-          <Link to="/forgot-password" style={{ fontSize: 14, color: "blue" }}>
-            Forgot password?
-          </Link>
-        </div>
-        <button type="submit" style={{ width: "100%", padding: 10 }}>
-          Login
-        </button>
-      </form>
+  <div className="login-container">
+    <h2>{role?.toUpperCase() || "USER"} Login</h2>
+    <form onSubmit={handleLogin}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <div className="forgot-link">
+        <Link to="/forgot-password">Forgot password?</Link>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p>
+      Don’t have an account?{" "}
+      <Link to={`/register/${role || "user"}`}>Register here</Link>
+    </p>
+  </div>
+);
 
-      <p style={{ marginTop: 20, fontSize: 14 }}>
-        Don’t have an account?{" "}
-        <Link to={`/register/${role || "user"}`} style={{ color: "blue" }}>
-          Register here
-        </Link>
-      </p>
-    </div>
-  );
 }
 
 export default Login;

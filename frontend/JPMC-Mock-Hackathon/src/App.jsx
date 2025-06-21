@@ -17,9 +17,9 @@ function App() {
         <Route path="/RoleSelector" element={<RoleSelector />} />
         <Route path="/login/:role" element={<Login />} />
         <Route path="/register" element={<Register />} /> 
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/anganwadi/dashboard" element={<AnganwadiDashboard />} />
-        <Route path="/beneficiary/dashboard" element={<BeneficiaryDashboard />} />
+       
+        
+
         <Route path="/register/:role" element={<Register />} />
         <Route path="/anganwadi/dashboard" element={<AWWDashboard />} />
 
