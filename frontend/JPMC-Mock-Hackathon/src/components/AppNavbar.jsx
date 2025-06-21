@@ -13,7 +13,7 @@ const AppNavbar = () => {
         </Navbar.Brand>
         <Button
           variant="outline-light"
-          onClick={() => navigate("/login-beneficiary")}
+          onClick={() => navigate("/RoleSelector")}
         >
           Login
         </Button>
