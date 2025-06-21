@@ -2,8 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const authRoutes = require("./routes/authRoutes");
-
+const workerrouter = require("./Routes/workerRoutes");
+const clientrouter = require("./Routes/ClientRoutes");
 dotenv.config();
 
 const app = express();
@@ -12,8 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-
+app.use("/worker", workerrouter);
+app.use("/client",clientrouter);
 
 // Routes
 app.get("/", (req, res) => {

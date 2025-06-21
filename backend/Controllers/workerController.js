@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../Models/Worker");
 const jwt = require("jsonwebtoken");
 
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();

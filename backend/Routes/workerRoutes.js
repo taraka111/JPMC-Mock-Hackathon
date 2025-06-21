@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-// ✅ Correct way to import controller functions
-const { loginAWW, verifyOTP } = require("../controllers/authController");
 
-// ✅ Correct route setup
+const { loginAWW, verifyOTP } = require("../Controllers/workerController");
+
+
 router.post("/aww-login", loginAWW);
 router.post("/verify-otp", verifyOTP);
 
