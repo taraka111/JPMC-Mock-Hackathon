@@ -10,10 +10,10 @@ router.post("/login", (req, res) => {
   const { email, password } = req.body;
   if (email === "admin@gmail.com" && password === "admin") {
     return res.status(200).json({ message: "Login successful", role: "admin" });
+  } else {
+    return res.status(401).json({ message: "Invalid credentials" });
   }
-  res.status(401).json({ message: "Invalid credentials" });
 });
-
 /* ─────────────────────────  AWW CRUD  ────────────────────────────────────── */
 // Create
 router.post("/awws", async (req, res) => {
