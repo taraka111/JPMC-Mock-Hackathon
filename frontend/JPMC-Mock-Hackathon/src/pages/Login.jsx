@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 function Login() {
   const { role } = useParams();
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/auth/login/${role}`, {
+      const res = await fetch(`http://localhost:5000/api/auth/login/${role}`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -19,60 +20,47 @@ function Login() {
 
       if (res.ok) {
         alert("Login successful");
-        if (role === "admin") {
-          navigate("/admin/dashboard");
-        } else if (role === "anganwadi") {
-          navigate("/anganwadi/dashboard");
-        } else {
-          navigate("/beneficiary/dashboard");
-        }
+        navigate(`/${role}/dashboard`);
       } else {
-        if (data.message === "User not found") {
+        if (res.status === 404) {
           alert("User not found! Redirecting to register...");
           navigate("/register");
         } else {
           alert(data.message || "Login failed");
         }
       }
-    } catch (error) {
-      alert("An error occurred. Try later.");
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred. Please try again later.");
     }
   };
-  
+
   return (
     <div style={{ maxWidth: "300px", margin: "40px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
-      <h2>{role?.toUpperCase()} Login</h2>
+      <h2>{role?.toUpperCase() || "USER"} Login</h2>
       <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: "12px" }}>
-          <input
-            type="email"
-            placeholder="Email..."
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-        <div style={{ marginBottom: "12px" }}>
-          <input
-            type="password"
-            placeholder="Password..."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-        <div style={{ marginBottom: "12px", textAlign: "right" }}>
-          <a href="/forgot-password" style={{ fontSize: "14px", color: "blue" }}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          style={{ width: "100%", padding: 8, margin: "8px 0" }}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          style={{ width: "100%", padding: 8, margin: "8px 0" }}
+        />
+        <div style={{ textAlign: "right", marginBottom: 12 }}>
+          <Link to="/forgot-password" style={{ fontSize: 14, color: "blue" }}>
             Forgot password?
-          </a>
+          </Link>
         </div>
-        <button
-          type="submit"
-          style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-        >
+        <button type="submit" style={{ width: "100%", padding: 10 }}>
           Login
         </button>
       </form>

@@ -1,19 +1,12 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
 
-exports.protect = async (req, res, next) => {
-  let token;
-  if (req.headers.authorization?.startsWith("Bearer")) {
-    try {
-      token = req.headers.authorization.split(" ")[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      req.user = await User.findById(decoded.id).select("-otp -otpExpires");
-      next();
-    } catch (err) {
-      res.status(401).json({ error: "Not authorized" });
-    }
-  } else {
-    res.status(401).json({ error: "Token missing" });
+module.exports = function(req, res, next) {
+  const token = req.header("Authorization")?.split(" ")[1];
+  if (!token) return res.status(401).json({ message: "No token, authorization denied" });
+  try {
+    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    next();
+  } catch {
+    res.status(401).json({ message: "Token is not valid" });
   }
 };

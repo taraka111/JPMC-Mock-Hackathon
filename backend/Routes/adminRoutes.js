@@ -1,24 +1,30 @@
+// backend/routes/adminRoutes.js
+
 const express = require("express");
-const admincontroller = require("../controllers/adminController");
-const adminrouter = express.Router();
+const router = express.Router();
+const Admin = require("../models/Admin");
 
-/* Admin login only (fixed) */
-adminrouter.post("/adminlogin", admincontroller.adminLogin);
+// Get all admins
+router.get("/", async (req, res) => {
+  try {
+    const admins = await Admin.find();
+    res.json(admins);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching admins" });
+  }
+});
 
-/* Worker CRUD */
-adminrouter.post("/addworker", admincontroller.addWorker);
-adminrouter.get("/viewworkers", admincontroller.viewWorkers);
-adminrouter.put("/updateworker/:id", admincontroller.updateWorker);
-adminrouter.delete("/deleteworker/:id", admincontroller.deleteWorker);
+// Create a new admin
+router.post("/", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-/* User CRUD */
-adminrouter.post("/adduser", admincontroller.addUser);
-adminrouter.get("/viewusers", admincontroller.viewUsers);
-adminrouter.put("/updateuser/:id", admincontroller.updateUser);
-adminrouter.delete("/deleteuser/:id", admincontroller.deleteUser);
+    const newAdmin = new Admin({ name, email, password });
+    await newAdmin.save();
+    res.status(201).json(newAdmin);
+  } catch (error) {
+    res.status(400).json({ message: "Error creating admin" });
+  }
+});
 
-/* Extra */
-adminrouter.get("/userlocation/:id", admincontroller.viewUserLocation);
-adminrouter.get("/downloadusers", admincontroller.downloadUserReport);
-
-module.exports = adminrouter;
+module.exports = router;
