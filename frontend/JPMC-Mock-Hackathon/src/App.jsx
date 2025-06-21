@@ -3,10 +3,8 @@ import AppNavbar from './components/AppNavbar';
 import HomePage from './pages/HomePage';
 import RoleSelector from './components/RoleSelector';
 import Login from './pages/Login';
-import AdminDashboard from './pages/AdminDashboard';
-import AnganwadiDashboard from './pages/AnganwadiDashboard';
-import BeneficiaryDashboard from './pages/BeneficiaryDashboard';
-import Register from './pages/Register';
+import Register from "./pages/Register";
+
 
 function App() {
   return (
@@ -20,6 +18,8 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/anganwadi/dashboard" element={<AnganwadiDashboard />} />
         <Route path="/beneficiary/dashboard" element={<BeneficiaryDashboard />} />
+        <Route path="/register/:role" element={<Register />} />
+        {/* Add more routes as needed */}
       </Routes>
     </Router>
   );
