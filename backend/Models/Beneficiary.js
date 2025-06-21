@@ -9,5 +9,4 @@ const beneficiarySchema = new mongoose.Schema({
   // Add more fields as per your app requirements
 });
 
-const Beneficiary = mongoose.model("Beneficiary", beneficiarySchema);
-module.exports = Beneficiary;
+module.exports = mongoose.models.Beneficiary || mongoose.model("Beneficiary", beneficiarySchema);
