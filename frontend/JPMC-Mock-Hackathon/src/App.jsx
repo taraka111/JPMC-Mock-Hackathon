@@ -34,6 +34,10 @@ import ViewBeneficiary from "./pages/ViewBeneficiary"; // adjust path if needed
         <Route path="/" element={<HomePage />} />
         <Route path="/RoleSelector" element={<RoleSelector />} />
         <Route path="/login/:role" element={<Login />} />
+        <Route path="/register" element={<Register />} /> 
+       
+        
+
         <Route path="/register" element={<Register />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/register/:role" element={<Register />} />

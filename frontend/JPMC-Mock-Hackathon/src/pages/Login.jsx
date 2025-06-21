@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import "../styles/login.css"; // Adjust the path if needed
+
 
 function Login() {
   const { role } = useParams();
@@ -40,6 +42,35 @@ function Login() {
   };
 
   return (
+  <div className="login-container">
+    <h2>{role?.toUpperCase() || "USER"} Login</h2>
+    <form onSubmit={handleLogin}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <div className="forgot-link">
+        <Link to="/forgot-password">Forgot password?</Link>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p>
+      Don’t have an account?{" "}
+      <Link to={`/register/${role || "user"}`}>Register here</Link>
+    </p>
+  </div>
+);
+
     <div style={{ maxWidth: "300px", margin: "40px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
       <h2>{role?.toUpperCase() || "USER"} Login</h2>
       <form onSubmit={handleLogin}>
