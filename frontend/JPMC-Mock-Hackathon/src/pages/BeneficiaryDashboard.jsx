@@ -36,6 +36,12 @@ function BeneficiaryDashboard() {
           🚪 Logout
         </button>
       </div>
+
+function BeneficiaryDashboard() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Beneficiary Dashboard</h1>
+      <p>Welcome! Here you can view your benefits, appointments, and status.</p>
     </div>
   );
 }
