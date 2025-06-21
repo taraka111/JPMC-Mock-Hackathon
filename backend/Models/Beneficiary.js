@@ -1,19 +1,13 @@
 const mongoose = require("mongoose");
 
 const beneficiarySchema = new mongoose.Schema({
-  motherName: String,
-  childName: String,
-  childAge: String,
-  weight: Number,
-  location: String,
-  awwId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  },
-  isDeleted: {
-    type: Boolean,
-    default: false
-  }
-}, { timestamps: true });
+  name: String,
+  email: { type: String, required: true, unique: true },
+  password: String,
+  phone: String,
+  address: String,
+  // Add more fields as per your app requirements
+});
 
-module.exports = mongoose.model("Beneficiary", beneficiarySchema);
+const Beneficiary = mongoose.model("Beneficiary", beneficiarySchema);
+module.exports = Beneficiary;

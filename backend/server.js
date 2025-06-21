@@ -1,34 +1,29 @@
+require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const cors = require("cors");
-const workerrouter = require("./Routes/workerRoutes");
-const clientrouter = require("./Routes/ClientRoutes");
-dotenv.config();
+const mongoose = require("mongoose");
+const authRoutes = require("./routes/userRoutes");
+const awwRoutes = require("./routes/awwRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const sessionRoutes = require("./routes/sessionRoutes");
+const syncRoutes = require("./routes/syncRoutes");
 
 const app = express();
-
-// Middleware
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-app.use("/worker", workerrouter);
-app.use("/client",clientrouter);
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/auth", userRoutes);
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error(err));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("MongoDB Connected"))
-.catch((err) => console.error("Mongo Error:", err));
+app.use("/api/auth", authRoutes);
+app.use("/api/anganwadi", awwRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/sessions", sessionRoutes);
+app.use("/api/sync", syncRoutes);
 
-// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
