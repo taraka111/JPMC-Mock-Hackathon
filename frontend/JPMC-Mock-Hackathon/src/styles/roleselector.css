@@ -1,0 +1,60 @@
+/* General Container Styling */
+.role-selector-container {
+  padding: 2rem 1rem;
+}
+
+/* Heading Styling */
+.role-selector-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Role Cards */
+.role-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.role-card {
+  width: 220px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.role-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.role-card .card-body {
+  padding: 1.5rem;
+}
+
+.role-card h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.role-card p {
+  font-size: 0.95rem;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .role-selector-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .role-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .role-card {
+    width: 100%;
+    max-width: 300px;
+  }
+}
