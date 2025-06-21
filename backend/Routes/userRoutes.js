@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Aww = require("../models/Aww");
+const Aww = require("../Models/Aww");
 const Admin = require("../models/Admin");
-const Beneficiary = require("../models/Beneficiary");
+const Beneficiary = require("../Models/Beneficiary");
 
 // LOGIN
 router.post("/login/:role", async (req, res) => {

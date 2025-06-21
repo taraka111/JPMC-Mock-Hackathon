@@ -8,4 +8,5 @@ const awwSchema = new mongoose.Schema({
   contact: { type: String }
 });
 
-module.exports = mongoose.model("Aww", awwSchema);
+// ✅ Prevent overwrite error if model already exists
+module.exports = mongoose.models.Aww || mongoose.model("Aww", awwSchema);
