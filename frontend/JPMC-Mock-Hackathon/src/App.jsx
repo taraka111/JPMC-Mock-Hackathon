@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import RoleSelector from './components/RoleSelector';
 import Login from './pages/Login';
 import Register from "./pages/Register";
+import AWWDashboard from "./pages/AWWDashboard"; // adjust path if needed
+
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path="/anganwadi/dashboard" element={<AnganwadiDashboard />} />
         <Route path="/beneficiary/dashboard" element={<BeneficiaryDashboard />} />
         <Route path="/register/:role" element={<Register />} />
+        <Route path="/anganwadi/dashboard" element={<AWWDashboard />} />
+
         {/* Add more routes as needed */}
       </Routes>
     </Router>
