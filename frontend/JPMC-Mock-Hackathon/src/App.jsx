@@ -4,6 +4,8 @@ import AppNavbar from './components/AppNavbar';
 import HomePage from './pages/HomePage';
 import RoleSelector from './components/RoleSelector';
 import Login from './pages/Login';
+import Register from "./pages/Register";
+
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/RoleSelector" element={<RoleSelector />} />
         <Route path="/login/:role" element={<Login />} />
+        <Route path="/register/:role" element={<Register />} />
+        {/* Add more routes as needed */}
       </Routes>
     </Router>
   );
