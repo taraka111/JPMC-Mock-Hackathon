@@ -11,11 +11,11 @@ function Login() {
     e.preventDefault();
     try {
       const res = await fetch(`http://localhost:5000/api/auth/login/${role}`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await res.json();
 
       if (res.ok) {
@@ -24,7 +24,7 @@ function Login() {
       } else {
         if (res.status === 404) {
           alert("User not found! Redirecting to register...");
-          navigate(`/register/${role}`);
+          navigate("/register");
         } else {
           alert(data.message || "Login failed");
         }
@@ -64,13 +64,6 @@ function Login() {
           Login
         </button>
       </form>
-
-      <p style={{ marginTop: 20, fontSize: 14 }}>
-        Don’t have an account?{" "}
-        <Link to={`/register/${role || "user"}`} style={{ color: "blue" }}>
-          Register here
-        </Link>
-      </p>
     </div>
   );
 }
