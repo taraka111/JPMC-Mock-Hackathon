@@ -10,7 +10,11 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+
+      const res = await fetch(`http://localhost:5000/api/${role}/login`, {
+
       const res = await fetch(`http://localhost:5000/api/auth/login/${role}`, {
+
 
         method: "POST",
         headers: { "Content-Type": "application/json" },

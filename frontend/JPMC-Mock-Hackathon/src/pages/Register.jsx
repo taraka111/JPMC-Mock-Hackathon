@@ -18,6 +18,11 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (role === "admin") {
+    alert("Admin registration is not allowed.");
+    return;
+  }
+
     try {
       const res = await fetch(`http://localhost:5000/api/${role}/register`, {
         method: "POST",
