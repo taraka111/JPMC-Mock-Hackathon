@@ -11,7 +11,6 @@ function Login() {
     e.preventDefault();
     try {
 
-      const res = await fetch(`http://localhost:5000/api/${role}/login`, {
 
       const res = await fetch(`http://localhost:5000/api/auth/login/${role}`, {
 
@@ -67,6 +66,13 @@ function Login() {
         <button type="submit" style={{ width: "100%", padding: 10 }}>
           Login
         </button>
+        <div style={{ marginTop: 12 }}>
+  <span style={{ fontSize: 14 }}>Don't have an account? </span>
+  <Link to={`/register/${role}`} style={{ fontSize: 14, color: "blue" }}>
+    Register here
+  </Link>
+</div>
+
       </form>
     </div>
   );

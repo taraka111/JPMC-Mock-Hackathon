@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Beneficiary = require("../models/Beneficiary");
+const Beneficiary=require("../models/Beneficiary");
 
 router.get("/", async (req, res) => {
   const list = await Beneficiary.find();

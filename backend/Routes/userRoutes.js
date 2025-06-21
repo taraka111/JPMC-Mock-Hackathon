@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Aww = require("../Models/Aww");
 const Admin = require("../models/Admin");
-const Beneficiary = require("../Models/Beneficiary");
+const Beneficiary = require("../models/Beneficiary");
 
 // LOGIN
 router.post("/login/:role", async (req, res) => {

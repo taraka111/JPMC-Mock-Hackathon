@@ -8,7 +8,8 @@ import Register from "./pages/Register";
 import AWWDashboard from "./pages/AWWDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import { useEffect } from "react";
-
+import BeneficiaryDashboard from "./pages/BeneficiaryDashboard";
+import ViewBeneficiary from "./pages/ViewBeneficiary";
 // Wrapper to use `useLocation` with `AppNavbar`
 function AppWrapper() {
   const location = useLocation();
@@ -22,9 +23,7 @@ function AppWrapper() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-import AWWDashboard from "./pages/AWWDashboard"; // adjust path if needed
-import BeneficiaryDashboard from "./pages/BeneficiaryDashboard"; // adjust path if needed
-import ViewBeneficiary from "./pages/ViewBeneficiary"; // adjust path if needed
+
 
 
   return (
